@@ -15,7 +15,7 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        //$this->middleware('can:edit-users');
+        $this->middleware('can:edit-users');
     }
     /**
      * Display a listing of the resource.
@@ -188,13 +188,12 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        $loggedId = intval(Auth::$id());
+        $loggedId = Auth::id();
 
-        if ($loggedId !== intval($id)) {
+        if($loggedId !== $id){            
             $user = User::find($id);
             $user->delete();
         }
-
         return redirect()->route('users.index');
     }
 }

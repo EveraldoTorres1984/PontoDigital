@@ -167,12 +167,12 @@ return [
     |
     */
 
-    'classes_auth_card' => 'card-outline card-primary',
+    'classes_auth_card' => 'bg-gradient-dark',
     'classes_auth_header' => '',
-    'classes_auth_body' => '',
-    'classes_auth_footer' => '',
-    'classes_auth_icon' => '',
-    'classes_auth_btn' => 'btn-flat btn-primary',
+    'classes_auth_body' => 'bg-gradient-dark',
+    'classes_auth_footer' => 'text-center',
+    'classes_auth_icon' => 'fa-fw text-light',
+    'classes_auth_btn' => 'btn-flat btn-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -239,7 +239,7 @@ return [
     'right_sidebar_push' => true,
     'right_sidebar_scrollbar_theme' => 'os-theme-light',
     'right_sidebar_scrollbar_auto_hide' => 'l',
-
+    
     /*
     |--------------------------------------------------------------------------
     | URLs
@@ -302,7 +302,7 @@ return [
         ],
 
         // Sidebar items:
-       /*  [
+        /*  [
             'type' => 'sidebar-menu-search',
             'text' => 'search',
         ], */
@@ -314,24 +314,26 @@ return [
         [
             'text'        => 'Dashboard',
             'url'         => 'painel',
-            'icon'        => 'far fa-fw fa-file',            
+            'icon'        => 'fa fa-desktop',
+            'can'        => 'edit-users'
         ],
         [
             'text'        => 'Relógio de Ponto',
             'url'         => 'painel/timetable',
-            'icon'        => 'far fa-fw fa-clock',            
+            'icon'        => 'far fa-fw fa-clock',
         ],
         [
             'text'        => 'Funcionários',
             'url'         => 'painel/users',
-            'icon'        => 'far fa-fw fa-user',            
-        ],       
+            'icon'        => 'fa fa-users',
+            'can'        => 'edit-users'
+        ],
         ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],        
+            'icon' => 'fas fa-user-cog',
+        ],
     ],
 
     /*
