@@ -319,7 +319,7 @@ return [
         ],
         [
             'text'        => 'Relógio de Ponto',
-            'url'         => 'painel/timetable',
+            'url'         => 'painel/timetables',
             'icon'        => 'far fa-fw fa-clock',
         ],
         [

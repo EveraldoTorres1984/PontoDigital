@@ -4,8 +4,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Site;
 use App\Http\Controllers\Admin;
+use App\Http\Controllers\TimeTable;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Site\PageController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,6 +32,7 @@ Route::prefix('painel')->group(function () {
     Route::post('logout', [Admin\Auth\LoginController::class, 'logout'])->name('logout');
 
     Route::resource('users', Admin\UserController::class);
+    Route::resource('timetables', TimeTable\TimeTableController::class);
 
     Route::get('profile', [Admin\ProfileController::class, 'index'])->name('profile');
 
