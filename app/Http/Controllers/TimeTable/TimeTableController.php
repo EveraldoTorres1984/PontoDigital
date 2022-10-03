@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\TimeTable;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 class TimeTableController extends Controller
 {
@@ -35,10 +37,21 @@ class TimeTableController extends Controller
      */
     public function create()
     {
-        $entrance_1 = Carbon::now();
-        echo $entrance_1->toDateTimeString();
-        return view('admin.timetables.index');
+        $users = User::all();
+
+        $new_timeTable = [            
+            'entrance_1' => Carbon::now()->format('d/m/Y'),
+            'exit_1' => Carbon::now()->format('d/m/Y'),
+            'entrance_2' => Carbon::now()->format('d/m/Y'),
+            'exit_2' =>  Carbon::now()->format('d/m/Y'),
+        ];
+
+        $timeTable = new TimeTable($new_timeTable);
+        $timeTable->save();
+
+        return view('admin.timetables.index', $new_timeTable);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,21 +61,6 @@ class TimeTableController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only([
-            'entrance_1',
-            'exit_2',
-            'entrance_2',
-            'exit_2'
-        ]);
-
-        $timeTable = new TimeTable;
-        $timeTable->entrance_1 = $data['entrance_1'];
-        $timeTable->exit_1 = $data['exit_1'];
-        $timeTable->entrance_2 = $data['entrance_2'];
-        $timeTable->exit_2 = $data['exit_2'];
-        $timeTable->save();
-
-        return redirect()->route('timetables.index');
     }
 
     /**

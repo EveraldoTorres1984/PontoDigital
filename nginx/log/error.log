@@ -1660,3 +1660,71 @@ Stack trace:
 2022/09/30 11:24:27 [warn] 31#31: *93 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel"
 2022/09/30 11:29:18 [warn] 31#31: *98 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel"
 2022/09/30 12:08:56 [warn] 31#31: *134 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/00/0000000004 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel"
+2022/09/30 12:58:21 [notice] 1#1: signal 3 (SIGQUIT) received, shutting down
+2022/09/30 12:58:21 [notice] 31#31: gracefully shutting down
+2022/09/30 12:58:21 [notice] 35#35: gracefully shutting down
+2022/09/30 12:58:21 [notice] 37#37: gracefully shutting down
+2022/09/30 12:58:21 [notice] 38#38: gracefully shutting down
+2022/09/30 12:58:21 [notice] 36#36: gracefully shutting down
+2022/09/30 12:58:21 [notice] 31#31: exiting
+2022/09/30 12:58:21 [notice] 35#35: exiting
+2022/09/30 12:58:21 [notice] 37#37: exiting
+2022/09/30 12:58:21 [notice] 38#38: exiting
+2022/09/30 12:58:21 [notice] 36#36: exiting
+2022/09/30 12:58:21 [notice] 31#31: exit
+2022/09/30 12:58:21 [notice] 38#38: exit
+2022/09/30 12:58:21 [notice] 35#35: exit
+2022/09/30 12:58:21 [notice] 37#37: exit
+2022/09/30 12:58:21 [notice] 36#36: exit
+2022/09/30 12:58:21 [notice] 32#32: gracefully shutting down
+2022/09/30 12:58:21 [notice] 32#32: exiting
+2022/09/30 12:58:21 [notice] 32#32: exit
+2022/09/30 12:58:21 [notice] 34#34: gracefully shutting down
+2022/09/30 12:58:21 [notice] 34#34: exiting
+2022/09/30 12:58:21 [notice] 34#34: exit
+2022/09/30 12:58:21 [notice] 33#33: gracefully shutting down
+2022/09/30 12:58:21 [notice] 33#33: exiting
+2022/09/30 12:58:21 [notice] 33#33: exit
+2022/09/30 12:58:21 [notice] 1#1: signal 17 (SIGCHLD) received from 31
+2022/09/30 12:58:21 [notice] 1#1: worker process 31 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 32 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 33 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 34 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 35 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 36 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 37 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: worker process 38 exited with code 0
+2022/09/30 12:58:21 [notice] 1#1: exit
+2022/10/03 08:01:32 [notice] 1#1: using the "epoll" event method
+2022/10/03 08:01:32 [notice] 1#1: nginx/1.20.0
+2022/10/03 08:01:32 [notice] 1#1: built by gcc 10.2.1 20201203 (Alpine 10.2.1_pre1) 
+2022/10/03 08:01:32 [notice] 1#1: OS: Linux 5.15.0-48-generic
+2022/10/03 08:01:32 [notice] 1#1: getrlimit(RLIMIT_NOFILE): 1048576:1048576
+2022/10/03 08:01:32 [notice] 1#1: start worker processes
+2022/10/03 08:01:32 [notice] 1#1: start worker process 31
+2022/10/03 08:01:32 [notice] 1#1: start worker process 32
+2022/10/03 08:01:32 [notice] 1#1: start worker process 33
+2022/10/03 08:01:32 [notice] 1#1: start worker process 34
+2022/10/03 08:01:32 [notice] 1#1: start worker process 35
+2022/10/03 08:01:32 [notice] 1#1: start worker process 36
+2022/10/03 08:01:32 [notice] 1#1: start worker process 37
+2022/10/03 08:01:32 [notice] 1#1: start worker process 38
+2022/10/03 08:09:19 [warn] 31#31: *2 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/00/0000000001 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 08:11:05 [warn] 31#31: *14 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/00/0000000002 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 08:12:35 [warn] 31#31: *16 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/00/0000000003 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 08:38:00 [warn] 31#31: *32 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/00/0000000004 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 08:39:17 [warn] 31#31: *34 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/5/00/0000000005 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 08:39:29 [warn] 31#31: *34 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/6/00/0000000006 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 10:16:45 [warn] 31#31: *101 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/7/00/0000000007 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 10:26:26 [warn] 31#31: *117 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/8/00/0000000008 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 10:59:27 [warn] 31#31: *150 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/9/00/0000000009 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/users"
+2022/10/03 11:12:21 [warn] 31#31: *169 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/0/01/0000000010 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 11:44:02 [warn] 31#31: *207 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/1/01/0000000011 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timesave/%7Bid%7D/entrance1 HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 11:45:26 [warn] 31#31: *207 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/2/01/0000000012 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timesave/%7Bid%7D/entrance1 HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 11:45:58 [warn] 31#31: *207 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/3/01/0000000013 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timesave/%7Bid%7D/entrance1 HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 11:48:54 [warn] 31#31: *213 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/4/01/0000000014 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timesave/%7Bid%7D/entrance1 HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 11:51:13 [warn] 31#31: *216 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/5/01/0000000015 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timesave/%7Bid%7D/entrance_1 HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 11:57:26 [warn] 31#31: *230 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/6/01/0000000016 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/users"
+2022/10/03 12:06:32 [warn] 31#31: *246 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/7/01/0000000017 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/users"
+2022/10/03 12:40:37 [warn] 31#31: *280 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/8/01/0000000018 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
+2022/10/03 12:42:42 [warn] 31#31: *283 an upstream response is buffered to a temporary file /var/cache/nginx/fastcgi_temp/9/01/0000000019 while reading upstream, client: 172.18.0.1, server: representante.karina.test, request: "GET /painel/timetables/create HTTP/1.1", upstream: "fastcgi://172.18.0.3:9000", host: "localhost", referrer: "http://localhost/painel/timetables"
