@@ -21,7 +21,7 @@ class TimeTableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $timeTables = TimeTable::paginate(10);
 
@@ -35,23 +35,9 @@ class TimeTableController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $users = User::all();
-
-        $new_timeTable = [            
-            'entrance_1' => Carbon::now()->format('d/m/Y'),
-            'exit_1' => Carbon::now()->format('d/m/Y'),
-            'entrance_2' => Carbon::now()->format('d/m/Y'),
-            'exit_2' =>  Carbon::now()->format('d/m/Y'),
-        ];
-
-        $timeTable = new TimeTable($new_timeTable);
-        $timeTable->save();
-
-        return view('admin.timetables.index', $new_timeTable);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -61,6 +47,33 @@ class TimeTableController extends Controller
      */
     public function store(Request $request)
     {
+        $new_timeTable = [
+            'user_id' => Auth::user()->id,
+            'date' => $request->date,
+            'entrance_1' => $request->entrance_1,
+            'exit_1' => $request->exit_1,
+            'entrance_2' => $request->entrance_2,
+            'exit_2' => $request->exit_2,
+        ];
+
+
+        if ($request->date == '') {
+
+            $timeTables = TimeTable::paginate(10);
+
+            return view('admin.timetables.index', [
+                'timeTables' => $timeTables
+            ])->with('msg', 'Escolha a data!');
+        }
+
+        $timeTable = new TimeTable($new_timeTable);
+        $timeTable->save();
+
+        $timeTables = TimeTable::paginate(10);
+
+        return view('admin.timetables.index', [
+            'timeTables' => $timeTables
+        ]);
     }
 
     /**
@@ -71,7 +84,6 @@ class TimeTableController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -94,7 +106,6 @@ class TimeTableController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**

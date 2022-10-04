@@ -5,21 +5,29 @@
 @section('content_header')
     <h1 class="mb-5">Relógio de ponto</h1>
     <div class="row">
-        <a href="/painel/timesave/{{$user->id}}/entrance1" class="ml-3 btn btn-sm btn-success">Registrar Entrada</a>
-        <a href="{{ route('timetables.create') }}" class="ml-3 btn btn-sm btn-danger">Registrar Saída Almoço</a>
-        <a href="{{ route('timetables.create') }}" class="ml-3 btn btn-sm btn-success">Registrar Volta Almoço</a>
-        <a href="{{ route('timetables.create') }}" class="ml-3 btn btn-sm btn-danger">Registrar Saída</a>
+        <form action="{{ route('timetables.store') }}" method="POST">
+            @csrf
+            <input type="date" name="date">
+            <button type="submit" class="ml-4 btn btn-sm btn-success">Registrar</button>
+        </form>
     </div>
 
 @endsection
 
 @section('content')
 
+@if (session('msg'))
+<div class="alert alert-info">
+    {{ session('msg') }}
+</div>
+@endif
+
     <div class="card">
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
                     <tr>
+                        <th>Data</th>
                         <th>Entrada</th>
                         <th>Saída Almoço</th>
                         <th>Volta Almoço</th>
@@ -29,6 +37,7 @@
                 <tbody>
                     @foreach ($timeTables as $timeTable)
                         <tr>
+                            <td>{{ $timeTable->date->format('d/m/Y') }}</td>
                             <td>{{ $timeTable->entrance_1 }}</td>
                             <td>{{ $timeTable->exit_1 }}</td>
                             <td>{{ $timeTable->entrance_2 }}</td>

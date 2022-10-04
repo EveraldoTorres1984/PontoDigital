@@ -9,8 +9,11 @@ class TimeTable extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
         'user_id',
+        'date',
         'entrance_1',
         'exit_1',
         'entrance_2',

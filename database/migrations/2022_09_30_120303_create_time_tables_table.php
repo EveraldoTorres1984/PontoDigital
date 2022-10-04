@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('time_tables', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('entrance_1')->nullable();
-            $table->dateTime('exit_1')->nullable();
-            $table->dateTime('entrance_2')->nullable();
-            $table->dateTime('exit_2')->nullable();
+            $table->date('date');
+            $table->time('entrance_1')->nullable();
+            $table->time('exit_1')->nullable();
+            $table->time('entrance_2')->nullable();
+            $table->time('exit_2')->nullable();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->timestamps();
         });
     }
 

@@ -34,7 +34,7 @@ Route::prefix('painel')->group(function () {
     Route::resource('users', Admin\UserController::class);
     Route::resource('timetables', TimeTable\TimeTableController::class);
 
-    Route::get('timesave/{id}/entrance1', [TimeTable\TimeTableController::class, 'entrance_1'])->name('entrance_1');
+    Route::post('timetables', [TimeTable\TimeTableController::class, 'store'])->name('timetables.store');
 
     Route::get('profile', [Admin\ProfileController::class, 'index'])->name('profile');
 
