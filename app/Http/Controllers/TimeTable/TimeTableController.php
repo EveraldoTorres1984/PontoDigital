@@ -56,17 +56,16 @@ class TimeTableController extends Controller
             'exit_2' => $request->exit_2,
         ];
 
-
-        if ($request->date == '') {
+        if ($request->date == null) {
 
             $timeTables = TimeTable::paginate(10);
 
             return view('admin.timetables.index', [
-                'timeTables' => $timeTables
-            ])->with('msg', 'Escolha a data!');
-        }
+                'timeTables' => $timeTables,                
+            ]);
+        }                
 
-        $timeTable = new TimeTable($new_timeTable);
+        $timeTable = new TimeTable($new_timeTable);        
         $timeTable->save();
 
         $timeTables = TimeTable::paginate(10);
@@ -104,8 +103,18 @@ class TimeTableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+        $timeTable = TimeTable::find($request->id);
+        $timeTable->entrance_1 = $request->entrance_1;
+        $timeTable->update(); 
+
+         $timeTables = TimeTable::paginate(10);
+
+        return view('admin.timetables.index', [
+            'timeTables' => $timeTables
+        ]);         
+       
     }
 
     /**

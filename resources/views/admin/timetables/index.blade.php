@@ -16,12 +16,6 @@
 
 @section('content')
 
-@if (session('msg'))
-<div class="alert alert-info">
-    {{ session('msg') }}
-</div>
-@endif
-
     <div class="card">
         <div class="card-body">
             <table class="table table-hover">
@@ -38,7 +32,15 @@
                     @foreach ($timeTables as $timeTable)
                         <tr>
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
-                            <td>{{ $timeTable->entrance_1 }}</td>
+                            <td>
+                                {{$timeTable->entrance_1}}
+                               
+                                    <form action="{{ route('timetables.update') }}" method="POST">
+                                        @csrf                                   @method('PUT')                                 <input type="hidden" name="id" value="{{$timeTable->id}}">
+                                        <input value="" type="time" name="entrance_1">
+                                        <button type="submit" class="ml-2 btn btn-sm btn-primary">Entrada</button>
+                                    </form>                                
+                            </td>
                             <td>{{ $timeTable->exit_1 }}</td>
                             <td>{{ $timeTable->entrance_2 }}</td>
                             <td>{{ $timeTable->exit_2 }}</td>
@@ -48,6 +50,12 @@
             </table>
         </div>
     </div>
+
+    @section('js')
+    <script>
+        alert('deu')
+    </script>
+    @endsection
 
     {{ $timeTables->links('pagination::bootstrap-4') }}
 @endsection
