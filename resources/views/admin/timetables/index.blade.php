@@ -33,13 +33,14 @@
                         <tr>
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
                             <td>
-                                {{$timeTable->entrance_1}}
-                               
-                                    <form action="{{ route('timetables.update') }}" method="POST">
-                                        @csrf                                   @method('PUT')                                 <input type="hidden" name="id" value="{{$timeTable->id}}">
-                                        <input value="" type="time" name="entrance_1">
-                                        <button type="submit" class="ml-2 btn btn-sm btn-primary">Entrada</button>
-                                    </form>                                
+                                {{ $timeTable->entrance_1 }}
+                                <form action="{{ route('timetables.update') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="id" value="{{ $timeTable->id }}">                                    
+                                    <button type="submit" class="ml-2 btn btn-sm btn-primary" name="entrance1" id="btnEntrance{{ $timeTable->id }}"
+                                        onclick="escondeBotao({{ $timeTable->id }});">Entrada</button>
+                                </form>
                             </td>
                             <td>{{ $timeTable->exit_1 }}</td>
                             <td>{{ $timeTable->entrance_2 }}</td>
@@ -51,11 +52,20 @@
         </div>
     </div>
 
-    @section('js')
+@section('js')
     <script>
-        alert('deu')
-    </script>
-    @endsection
+        function escondeBotao(id, $e) {
+            
+            let btnEntrance = document.querySelector('#btnEntrance' + id);
+            let td = document.querySelector('td');
 
-    {{ $timeTables->links('pagination::bootstrap-4') }}
+            if (document.querySelector('td').value !== "") {
+                btnEntrance.style.display = "none";
+            }            
+        }
+    </script>
+@endsection
+
+
+{{ $timeTables->links('pagination::bootstrap-4') }}
 @endsection

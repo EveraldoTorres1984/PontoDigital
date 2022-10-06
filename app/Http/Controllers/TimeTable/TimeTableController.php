@@ -8,6 +8,10 @@ use App\Models\TimeTable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
+
+use function PHPSTORM_META\type;
+use function Termwind\style;
 
 class TimeTableController extends Controller
 {
@@ -106,7 +110,11 @@ class TimeTableController extends Controller
     public function update(Request $request)
     {
         $timeTable = TimeTable::find($request->id);
-        $timeTable->entrance_1 = $request->entrance_1;
+
+        $actualTime = Carbon::now()->format('H:i');
+        $showDate = $actualTime;
+        $timeTable->entrance_1 = $showDate;        
+
         $timeTable->update(); 
 
          $timeTables = TimeTable::paginate(10);
@@ -114,8 +122,8 @@ class TimeTableController extends Controller
         return view('admin.timetables.index', [
             'timeTables' => $timeTables
         ]);         
-       
     }
+    
 
     /**
      * Remove the specified resource from storage.
