@@ -33,14 +33,16 @@
                         <tr>
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
                             <td>
-                                {{ $timeTable->entrance_1 }}
-                                <form action="{{ route('timetables.update') }}" method="POST">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="hidden" name="id" value="{{ $timeTable->id }}">                                    
-                                    <button type="submit" class="ml-2 btn btn-sm btn-primary" name="entrance1" id="btnEntrance{{ $timeTable->id }}"
-                                        onclick="escondeBotao({{ $timeTable->id }});">Entrada</button>
-                                </form>
+                                <div id="forms">
+                                    {{ $timeTable->entrance_1 }}
+                                    <form method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="hidden" name="id" value="{{ $timeTable->id }}">
+                                        <button class="ml-2 btn btn-sm btn-primary" name="entrance1" id="btnEntrance{{ $timeTable->id }}"
+                                            onclick="hideButton({{ $timeTable->id }});">Entrada</button>
+                                    </form>
+                                </div>
                             </td>
                             <td>{{ $timeTable->exit_1 }}</td>
                             <td>{{ $timeTable->entrance_2 }}</td>
@@ -52,16 +54,22 @@
         </div>
     </div>
 
+
+@section('css')
+    
+@endsection
 @section('js')
+
     <script>
-        function escondeBotao(id, $e) {
-            
+        function hideButton(id) {
+
             let btnEntrance = document.querySelector('#btnEntrance' + id);
             let td = document.querySelector('td');
 
             if (document.querySelector('td').value !== "") {
                 btnEntrance.style.display = "none";
-            }            
+            }
+            
         }
     </script>
 @endsection

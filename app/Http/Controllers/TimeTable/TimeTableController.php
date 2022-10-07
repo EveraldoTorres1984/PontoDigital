@@ -67,7 +67,8 @@ class TimeTableController extends Controller
             return view('admin.timetables.index', [
                 'timeTables' => $timeTables,                
             ]);
-        }                
+        } 
+        
 
         $timeTable = new TimeTable($new_timeTable);        
         $timeTable->save();
@@ -111,16 +112,15 @@ class TimeTableController extends Controller
     {
         $timeTable = TimeTable::find($request->id);
 
-        $actualTime = Carbon::now()->format('H:i');
-        $showDate = $actualTime;
-        $timeTable->entrance_1 = $showDate;        
-
+        $actualTime = Carbon::now()->format('H:i:s');
+        $showTime = $actualTime;
+        $timeTable->entrance_1 = $showTime; 
         $timeTable->update(); 
 
          $timeTables = TimeTable::paginate(10);
 
         return view('admin.timetables.index', [
-            'timeTables' => $timeTables
+            'timeTables' => $timeTables            
         ]);         
     }
     
