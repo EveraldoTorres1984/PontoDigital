@@ -10,6 +10,7 @@
             <input type="date" name="date">
             <button type="submit" class="ml-4 btn btn-sm btn-success">Registrar</button>
         </form>
+        <div class="digital ml-5">--:--:--</div>
     </div>
 
 @endsection
@@ -32,18 +33,17 @@
                     @foreach ($timeTables as $timeTable)
                         <tr>
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
-                            <td>
-                                <div id="forms">
+                            <div id="forms">
+                                <td>
                                     {{ $timeTable->entrance_1 }}
-                                    <form method="POST">
+                                    <form action="{{ route('timetables.update') }}" method="POST">
                                         @csrf
                                         @method('PUT')
                                         <input type="hidden" name="id" value="{{ $timeTable->id }}">
-                                        <button class="ml-2 btn btn-sm btn-primary" name="entrance1" id="btnEntrance{{ $timeTable->id }}"
-                                            onclick="hideButton({{ $timeTable->id }});">Entrada</button>
+                                        <button class="ml-2 btn btn-sm btn-primary" name="entrance_1" id="btnEntrance{{ $timeTable->id }}" onclick="hideButton({{ $timeTable->id }});">Entrada</button>
                                     </form>
-                                </div>
-                            </td>
+                                </td>
+                            </div>
                             <td>{{ $timeTable->exit_1 }}</td>
                             <td>{{ $timeTable->entrance_2 }}</td>
                             <td>{{ $timeTable->exit_2 }}</td>
@@ -55,12 +55,25 @@
     </div>
 
 
-@section('css')
-    
-@endsection
+
 @section('js')
 
     <script>
+        let digitalElement = document.querySelector('.digital');
+
+        function updateClock() {
+            let now = new Date();
+            let hour = now.getHours();
+            let minute = now.getMinutes();
+            let second = now.getSeconds();
+
+            digitalElement.innerHTML = `${fixZero(hour)}:${fixZero(minute)}:${fixZero(second)}`;
+        }
+
+        function fixZero(time) {
+            return time < 10 ? `0${time}` : time;
+        }
+
         function hideButton(id) {
 
             let btnEntrance = document.querySelector('#btnEntrance' + id);
@@ -69,8 +82,9 @@
             if (document.querySelector('td').value !== "") {
                 btnEntrance.style.display = "none";
             }
-            
         }
+        setInterval(updateClock, 1000);
+        updateClock();
     </script>
 @endsection
 
