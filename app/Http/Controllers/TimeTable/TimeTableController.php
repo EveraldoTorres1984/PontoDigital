@@ -51,33 +51,27 @@ class TimeTableController extends Controller
      */
     public function store(Request $request)
     {
-        $new_timeTable = [
-            'user_id' => Auth::user()->id,
-            'date' => $request->date,           
-            'entrance_1' => $request->entrance_1,
-            'exit_1' => $request->exit_1,
-            'entrance_2' => $request->entrance_2,
-            'exit_2' => $request->exit_2,
-        ];   
-        
-        
-        if ($request->date == null) {           
 
-            $timeTables = TimeTable::paginate(10);
+        if ($request->date == null) {
 
-            return view('admin.timetables.index', [
-                'timeTables' => $timeTables                               
-            ]);
-        }          
-        
-        $timeTable = new TimeTable($new_timeTable);        
-        $timeTable->save();
+            TimeTable::paginate(10);
 
-        $timeTables = TimeTable::paginate(10);
+            return redirect()->route('timetables.index')
+                ->with('error', "Selecione a data desejada");
+        }
 
-        return view('admin.timetables.index', [
-            'timeTables' => $timeTables
-        ]);
+        if ($request->date) {
+
+            $timeTable = new TimeTable();
+            $timeTable->user_id = Auth::user()->id;
+            $timeTable->date = $request->date;
+            $timeTable->save();
+
+            TimeTable::paginate(10);
+
+            return redirect()->route('timetables.index')
+                ->with('success', "Data adicionada!");
+        }
     }
 
     /**
@@ -110,21 +104,18 @@ class TimeTableController extends Controller
      */
     public function update(Request $request)
     {
-        $timeTable = TimeTable::find($request->id);
+        //passar o id da data e achar no banco
+        //na entrance_1 vou setar o valor date do php
+        $timeTable = new TimeTable();
 
-        $actualTime = Carbon::now()->format("H:i");
-        $showTime = $actualTime;
-        $timeTable->entrance_1 = $showTime;       
-        
-        $timeTable->update(); 
+        TimeTable::find($request->id);
 
-         $timeTables = TimeTable::paginate(10);
+        $timeTable->entrance_1 = Carbon::now();
+        $timeTable->save();
 
-        return view('admin.timetables.index', [
-            'timeTables' => $timeTables            
-        ]);         
+        return redirect()->route('timetables.index')
+            ->with('success', "hora adicionada!");
     }
-    
 
     /**
      * Remove the specified resource from storage.

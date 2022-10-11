@@ -3,6 +3,8 @@
 @section('title', 'Relógio de ponto')
 
 @section('content_header')
+
+@include('flash-message')
     <h1 class="mb-5">Relógio de ponto</h1>
     <div class="row">
         <form action="{{ route('timetables.store') }}" method="POST">
@@ -16,7 +18,6 @@
 @endsection
 
 @section('content')
-
     <div class="card">
         <div class="card-body">
             <table class="table table-hover">
@@ -33,17 +34,15 @@
                     @foreach ($timeTables as $timeTable)
                         <tr>
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
-                            <div id="forms">
-                                <td>
+                            <td>
+                                @if (isset($timeTable->entrance_1))
                                     {{ $timeTable->entrance_1 }}
-                                    <form action="{{ route('timetables.update') }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="hidden" name="id" value="{{ $timeTable->id }}">
-                                        <button class="ml-2 btn btn-sm btn-primary" name="entrance_1" id="btnEntrance{{ $timeTable->id }}" onclick="hideButton({{ $timeTable->id }});">Entrada</button>
-                                    </form>
-                                </td>
-                            </div>
+                                @else                                   
+                                    <input type="hidden" name="id" value="{{ $timeTable->id }}">
+                                    <a href="{{ route('timetables.update') }}" class="ml-2 btn btn-sm btn-primary">Entrada</a>
+                                @endif
+                            </td>
+
                             <td>{{ $timeTable->exit_1 }}</td>
                             <td>{{ $timeTable->entrance_2 }}</td>
                             <td>{{ $timeTable->exit_2 }}</td>
@@ -74,18 +73,11 @@
             return time < 10 ? `0${time}` : time;
         }
 
-        function hideButton(id) {
-
-            let btnEntrance = document.querySelector('#btnEntrance' + id);
-            let td = document.querySelector('td');
-
-            if (document.querySelector('td').value !== "") {
-                btnEntrance.style.display = "none";
-            }
-        }
         setInterval(updateClock, 1000);
         updateClock();
+
     </script>
+    <script src="/js/app.js"></script>
 @endsection
 
 
