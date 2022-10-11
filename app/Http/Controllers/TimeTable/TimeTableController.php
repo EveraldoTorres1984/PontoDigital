@@ -102,13 +102,13 @@ class TimeTableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         //passar o id da data e achar no banco
         //na entrance_1 vou setar o valor date do php
         $timeTable = new TimeTable();
 
-        TimeTable::find($request->id);
+        TimeTable::find($id);
 
         $timeTable->entrance_1 = Carbon::now();
         $timeTable->save();
