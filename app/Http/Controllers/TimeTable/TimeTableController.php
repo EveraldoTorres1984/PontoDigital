@@ -9,6 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
+use Illuminate\Support\Facades\Validator;
 
 use function PHPSTORM_META\type;
 use function Termwind\style;
@@ -51,32 +52,28 @@ class TimeTableController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->only([
+            'date',
+        ]);
 
-        if ($request->date == null) {
+        $validator = Validator::make($data, [
+            'date' => ['required', 'unique:time_tables']
+        ]);
 
-            TimeTable::paginate(10);
-
+        if ($validator->fails()) {
             return redirect()->route('timetables.index')
-                ->with('error', "Selecione a data desejada");
+                ->withErrors($validator);
         }
 
-        if ($request->date === $request->date) {
-            return redirect()->route('timetables.index')
-                ->with('error', "Data já existente!");
-        }
+        $timeTable = new TimeTable();
+        $timeTable->user_id = Auth::user()->id;
+        $timeTable->date = $request->date;
+        $timeTable->save();
 
-        if ($request->date) {
+        TimeTable::paginate(10);
 
-            $timeTable = new TimeTable();
-            $timeTable->user_id = Auth::user()->id;
-            $timeTable->date = $request->date;
-            $timeTable->save();
-
-            TimeTable::paginate(10);
-
-            return redirect()->route('timetables.index')
-                ->with('success', "Data adicionada!");
-        }
+        return redirect()->route('timetables.index')
+            ->with('success', "Data adicionada!");
     }
 
     /**

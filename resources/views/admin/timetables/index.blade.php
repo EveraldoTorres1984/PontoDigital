@@ -36,7 +36,7 @@
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
                             <td>
                                 @if (isset($timeTable->entrance_1))
-                                    {{ Carbon\Carbon::parse($timeTable->entrance_1)->format("H:i") }}
+                                    {{ Carbon\Carbon::parse($timeTable->entrance_1)->format('H:i') }}
                                 @else
                                     <form action="{{ route('timetables.update', ['id' => $timeTable->id]) }}" method="POST">
                                         @method('PUT')
@@ -47,7 +47,11 @@
                                 @endif
                             </td>
 
-                            <td>{{ $timeTable->exit_1 }}</td>
+                            <td>             
+                                
+                           {{-- codigo da saida para almoço --}}
+                           
+                            </td>
                             <td>{{ $timeTable->entrance_2 }}</td>
                             <td>{{ $timeTable->exit_2 }}</td>
                         </tr>
