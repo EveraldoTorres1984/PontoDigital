@@ -30,7 +30,7 @@ class TimeTableController extends Controller
         $timeTables = TimeTable::paginate(10);
 
         return view('admin.timetables.index', [
-            'timeTables' => $timeTables
+            'timeTables' => $timeTables,
         ]);
     }
 
@@ -58,6 +58,11 @@ class TimeTableController extends Controller
 
             return redirect()->route('timetables.index')
                 ->with('error', "Selecione a data desejada");
+        }
+
+        if ($request->date === $request->date) {
+            return redirect()->route('timetables.index')
+                ->with('error', "Data já existente!");
         }
 
         if ($request->date) {
@@ -97,24 +102,19 @@ class TimeTableController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     *$timeTable->date = $request->date;
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //passar o id da data e achar no banco
-        //na entrance_1 vou setar o valor date do php
-        $timeTable = new TimeTable();
-
-        TimeTable::find($id);
-
-        $timeTable->entrance_1 = Carbon::now();
-        $timeTable->save();
+        $entrance_1 = TimeTable::findOrFail($id);
+        $entrance_1->entrance_1 = Carbon::now()->format("H:i");
+        $entrance_1->save();
 
         return redirect()->route('timetables.index')
-            ->with('success', "hora adicionada!");
+            ->with('success', "Entrada adicionada!");
     }
 
     /**

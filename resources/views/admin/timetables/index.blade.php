@@ -4,7 +4,7 @@
 
 @section('content_header')
 
-@include('flash-message')
+    @include('flash-message')
     <h1 class="mb-5">Relógio de ponto</h1>
     <div class="row">
         <form action="{{ route('timetables.store') }}" method="POST">
@@ -36,10 +36,14 @@
                             <td>{{ $timeTable->date->format('d/m/Y') }}</td>
                             <td>
                                 @if (isset($timeTable->entrance_1))
-                                    {{ $timeTable->entrance_1 }}
-                                @else                                   
-                                    <input type="hidden" name="id" value="{{ $timeTable->id }}">
-                                    <a href="{{ route('timetables.update') }}" class="ml-2 btn btn-sm btn-primary">Entrada</a>
+                                    {{ Carbon\Carbon::parse($timeTable->entrance_1)->format("H:i") }}
+                                @else
+                                    <form action="{{ route('timetables.update', ['id' => $timeTable->id]) }}" method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $timeTable->id }}">
+                                        <button type="submit" class="ml-2 btn btn-sm btn-primary">Entrada</button>
+                                    </form>
                                 @endif
                             </td>
 
@@ -75,7 +79,6 @@
 
         setInterval(updateClock, 1000);
         updateClock();
-
     </script>
     <script src="/js/app.js"></script>
 @endsection
