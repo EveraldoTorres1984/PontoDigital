@@ -104,15 +104,43 @@ class TimeTableController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update($id)
+    public function entrance_1($id)
     {
         $entrance_1 = TimeTable::findOrFail($id);
         $entrance_1->entrance_1 = Carbon::now()->format("H:i");
         $entrance_1->save();
 
         return redirect()->route('timetables.index')
-            ->with('success', "Entrada adicionada!");
+            ->with('success', "Entrada registrada");       
     }
+
+    public function exit_1($id){
+        $exit_1 = TimeTable::findOrFail($id);
+        $exit_1->exit_1 = Carbon::now()->format("H:i");        
+        $exit_1->save();
+
+        return redirect()->route('timetables.index')
+            ->with('success', "Saída registrada");
+    }
+
+    public function entrance_2($id){
+        $entrance_2 = TimeTable::findOrFail($id);
+        $entrance_2->entrance_2 = Carbon::now()->format("H:i");        
+        $entrance_2->save();
+
+        return redirect()->route('timetables.index')
+            ->with('success', "Volta do Almoço Registrada");
+    }
+
+    public function exit_2($id){
+        $exit_2 = TimeTable::findOrFail($id);
+        $exit_2->exit_2 = Carbon::now()->format("H:i");        
+        $exit_2->save();
+
+        return redirect()->route('timetables.index')
+            ->with('success', "Fim do expediente registrado");
+    }
+
 
     /**
      * Remove the specified resource from storage.

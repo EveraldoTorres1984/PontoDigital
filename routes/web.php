@@ -36,7 +36,14 @@ Route::prefix('painel')->group(function () {
 
     Route::post('timetables', [TimeTable\TimeTableController::class, 'store'])->name('timetables.store');
 
-    Route::put('timetables/{id}', [TimeTable\TimeTableController::class, 'update'])->name('timetables.update');   
+    Route::put('entrance_1/{id}', [TimeTable\TimeTableController::class, 'entrance_1'])->name('entrance_1.update');
+
+    Route::put('exit_1/{id}', [TimeTable\TimeTableController::class, 'exit_1'])->name('exit_1.update');
+
+    Route::put('entrance_2/{id}', [TimeTable\TimeTableController::class, 'entrance_2'])->name('entrance_2.update');
+          
+    Route::put('exit_2/{id}', [TimeTable\TimeTableController::class, 'exit_2'])->name('exit_2.update');            
+    
 
     Route::get('profile', [Admin\ProfileController::class, 'index'])->name('profile');
 

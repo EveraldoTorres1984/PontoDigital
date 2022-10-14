@@ -12,7 +12,7 @@ class TimeTable extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'user_id',
+        'user_id',        
         'date',
         'entrance_1',
         'exit_1',
@@ -24,6 +24,6 @@ class TimeTable extends Model
 
     public function user()
     {
-        return $this->belongsTo('App\Models\User');
+        return $this->hasOne(TimeTable::class, 'user_id');
     }
 }

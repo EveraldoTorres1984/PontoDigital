@@ -46,6 +46,6 @@ class User extends Authenticatable
 
     public function timeTables(){
         
-        return $this->hasMany('App\Models\TimeTable');
+        
     }
 }

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time('exit_1')->nullable();
             $table->time('entrance_2')->nullable();
             $table->time('exit_2')->nullable();
-            $table->foreignId('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id');
         });
     }
 
@@ -32,7 +32,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('time_tables', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 };

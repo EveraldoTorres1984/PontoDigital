@@ -38,7 +38,7 @@
                                 @if (isset($timeTable->entrance_1))
                                     {{ Carbon\Carbon::parse($timeTable->entrance_1)->format('H:i') }}
                                 @else
-                                    <form action="{{ route('timetables.update', ['id' => $timeTable->id]) }}" method="POST">
+                                    <form action="{{ route('entrance_1.update', ['id' => $timeTable->id]) }}" method="POST">
                                         @method('PUT')
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $timeTable->id }}">
@@ -47,13 +47,43 @@
                                 @endif
                             </td>
 
-                            <td>             
-                                
-                           {{-- codigo da saida para almoço --}}
-                           
+                            <td>
+                                @if (isset($timeTable->exit_1))
+                                    {{ Carbon\Carbon::parse($timeTable->exit_1)->format('H:i') }}
+                                @else
+                                    <form action="{{ route('exit_1.update', ['id' => $timeTable->id]) }}" method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $timeTable->id }}">
+                                        <button type="submit" class="ml-2 btn btn-sm btn-warning">Saída</button>
+                                    </form>
+                                @endif
+
                             </td>
-                            <td>{{ $timeTable->entrance_2 }}</td>
-                            <td>{{ $timeTable->exit_2 }}</td>
+                            <td>
+                                @if (isset($timeTable->entrance_2))
+                                    {{ Carbon\Carbon::parse($timeTable->entrance_2)->format('H:i') }}
+                                @else
+                                    <form action="{{ route('entrance_2.update', ['id' => $timeTable->id]) }}" method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $timeTable->id }}">
+                                        <button type="submit" class="ml-2 btn btn-sm btn-warning">Entrada tarde</button>
+                                    </form>
+                                @endif
+                            </td>
+                            <td>
+                                @if (isset($timeTable->exit_2))
+                                    {{ Carbon\Carbon::parse($timeTable->exit_2)->format('H:i') }}
+                                @else
+                                    <form action="{{ route('exit_2.update', ['id' => $timeTable->id]) }}" method="POST">
+                                        @method('PUT')
+                                        @csrf
+                                        <input type="hidden" name="id" value="{{ $timeTable->id }}">
+                                        <button type="submit" class="ml-2 btn btn-sm btn-danger">Final Expediente</button>
+                                    </form>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
