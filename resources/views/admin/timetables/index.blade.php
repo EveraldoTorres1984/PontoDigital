@@ -18,6 +18,7 @@
 @endsection
 
 @section('content')
+    
     <div class="card">
         <div class="card-body">
             <table class="table table-hover">
@@ -68,7 +69,7 @@
                                         @method('PUT')
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $timeTable->id }}">
-                                        <button type="submit" class="ml-2 btn btn-sm btn-warning">Entrada tarde</button>
+                                        <button type="submit" class="ml-2 btn btn-sm btn-primary">Entrada tarde</button>
                                     </form>
                                 @endif
                             </td>

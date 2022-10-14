@@ -24,6 +24,6 @@ class TimeTable extends Model
 
     public function user()
     {
-        return $this->hasOne(TimeTable::class, 'user_id');
+        return $this->belongsTo(User::class);
     }
 }

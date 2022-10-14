@@ -28,7 +28,10 @@ class TimeTableController extends Controller
      */
     public function index(Request $request)
     {
-        $timeTables = TimeTable::paginate(10);
+
+        $loggedId = Auth::id();
+
+        $timeTables = TimeTable::select("*")->where('user_id', $loggedId)->paginate(10);
 
         return view('admin.timetables.index', [
             'timeTables' => $timeTables,
@@ -57,13 +60,14 @@ class TimeTableController extends Controller
         ]);
 
         $validator = Validator::make($data, [
-            'date' => ['required', 'unique:time_tables']
+            'date' => ['required',]
         ]);
 
         if ($validator->fails()) {
             return redirect()->route('timetables.index')
                 ->withErrors($validator);
-        }
+        }       
+        
 
         $timeTable = new TimeTable();
         $timeTable->user_id = Auth::user()->id;
@@ -111,30 +115,33 @@ class TimeTableController extends Controller
         $entrance_1->save();
 
         return redirect()->route('timetables.index')
-            ->with('success', "Entrada registrada");       
+            ->with('success', "Entrada registrada");
     }
 
-    public function exit_1($id){
+    public function exit_1($id)
+    {
         $exit_1 = TimeTable::findOrFail($id);
-        $exit_1->exit_1 = Carbon::now()->format("H:i");        
+        $exit_1->exit_1 = Carbon::now()->format("H:i");
         $exit_1->save();
 
         return redirect()->route('timetables.index')
             ->with('success', "Saída registrada");
     }
 
-    public function entrance_2($id){
+    public function entrance_2($id)
+    {
         $entrance_2 = TimeTable::findOrFail($id);
-        $entrance_2->entrance_2 = Carbon::now()->format("H:i");        
+        $entrance_2->entrance_2 = Carbon::now()->format("H:i");
         $entrance_2->save();
 
         return redirect()->route('timetables.index')
             ->with('success', "Volta do Almoço Registrada");
     }
 
-    public function exit_2($id){
+    public function exit_2($id)
+    {
         $exit_2 = TimeTable::findOrFail($id);
-        $exit_2->exit_2 = Carbon::now()->format("H:i");        
+        $exit_2->exit_2 = Carbon::now()->format("H:i");
         $exit_2->save();
 
         return redirect()->route('timetables.index')
