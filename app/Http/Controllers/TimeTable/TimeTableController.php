@@ -9,6 +9,8 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
+use Illuminate\Support\Facades\Date;
+use Illuminate\Support\Facades\Request as FacadesRequest;
 use Illuminate\Support\Facades\Validator;
 
 use function PHPSTORM_META\type;
@@ -20,13 +22,14 @@ class TimeTableController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+      
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
 
         $loggedId = Auth::id();
@@ -55,22 +58,47 @@ class TimeTableController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->only([
-            'date',
+        $loggedId = Auth::id();
+
+        $date = Carbon::now();
+        $date->toDateTimeString();
+        $timeTable = new TimeTable();
+        $data = $request->only([            
+            'date'
         ]);
+        
+        if (isset($request->date)) {
+
+            $checkDate = TimeTable::select('date')
+                ->where('date', $request->date)
+                ->get();                
+
+            if (count($checkDate ) > 0) {
+                
+                return redirect()->route('timetables.index')->with('error', 'Esta data está sendo utilizada!');
+                
+            }else{ 
+
+                $checkDate !== $request->date; 
+                $timeTable->date = $request->date;
+                $timeTable->user_id = $loggedId;
+                $timeTable->save();
+
+                return redirect()->route('timetables.index')->with('success', 'Data adicionada!');
+            }
+        }       
 
         $validator = Validator::make($data, [
-            'date' => ['required',]
+            'date' => ['required']
         ]);
+
 
         if ($validator->fails()) {
             return redirect()->route('timetables.index')
                 ->withErrors($validator);
-        }       
+        }
         
-
-        $timeTable = new TimeTable();
-        $timeTable->user_id = Auth::user()->id;
+        $timeTable->user_id = -1;
         $timeTable->date = $request->date;
         $timeTable->save();
 

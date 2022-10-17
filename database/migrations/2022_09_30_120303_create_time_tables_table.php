@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time('exit_1')->nullable();
             $table->time('entrance_2')->nullable();
             $table->time('exit_2')->nullable();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->constrained('users')->nullable();
         });
     }
 

@@ -27,7 +27,12 @@ class AuthServiceProvider extends ServiceProvider
 
         Gate::define('edit-users', function ($user) {
             $user->admin = intval($user->admin);
-            return $user->admin === 1;            
+            return $user->admin === 1;
+            
+            Gate::define('input-dates', function ($user) {
+                $user->admin = intval($user->admin);
+                return $user->admin === 1;            
+            });
         });
     }
 }
