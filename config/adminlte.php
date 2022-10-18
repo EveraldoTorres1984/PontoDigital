@@ -315,8 +315,7 @@ return [
             'text'        => 'Dashboard',
             'url'         => 'painel',
             'icon'        => 'fa fa-desktop',
-            'can'        => 'edit-users',
-            'can'        => 'input-dates'
+            'can'        => 'edit-users',            
         ],
         [
             'text'        => 'Relógio de Ponto',

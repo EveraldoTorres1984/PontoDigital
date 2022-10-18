@@ -8,9 +8,7 @@ use App\Models\TimeTable;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-use Illuminate\Database\Eloquent\HigherOrderBuilderProxy;
-use Illuminate\Support\Facades\Date;
-use Illuminate\Support\Facades\Request as FacadesRequest;
+
 use Illuminate\Support\Facades\Validator;
 
 use function PHPSTORM_META\type;
@@ -22,7 +20,6 @@ class TimeTableController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-      
     }
     /**
      * Display a listing of the resource.
@@ -31,7 +28,6 @@ class TimeTableController extends Controller
      */
     public function index()
     {
-
         $loggedId = Auth::id();
 
         $timeTables = TimeTable::select("*")->where('user_id', $loggedId)->paginate(10);
@@ -63,43 +59,21 @@ class TimeTableController extends Controller
         $date = Carbon::now();
         $date->toDateTimeString();
         $timeTable = new TimeTable();
-        $data = $request->only([            
+        $data = $request->only([
             'date'
         ]);
-        
-        if (isset($request->date)) {
 
-            $checkDate = TimeTable::select('date')
-                ->where('date', $request->date)
-                ->get();                
+        $checkDate = TimeTable::select('date')
+            ->where('date', Carbon::today()->format('Y-m-d'))->where('user_id', Auth::id())
+            ->get();
 
-            if (count($checkDate ) > 0) {
-                
-                return redirect()->route('timetables.index')->with('error', 'Esta data está sendo utilizada!');
-                
-            }else{ 
+        if (count($checkDate) > 0) {
 
-                $checkDate !== $request->date; 
-                $timeTable->date = $request->date;
-                $timeTable->user_id = $loggedId;
-                $timeTable->save();
-
-                return redirect()->route('timetables.index')->with('success', 'Data adicionada!');
-            }
-        }       
-
-        $validator = Validator::make($data, [
-            'date' => ['required']
-        ]);
-
-
-        if ($validator->fails()) {
-            return redirect()->route('timetables.index')
-                ->withErrors($validator);
+            return redirect()->route('timetables.index')->with('error', 'Esta data está sendo utilizada!');
         }
-        
-        $timeTable->user_id = -1;
-        $timeTable->date = $request->date;
+
+        $timeTable->user_id = Auth::id();
+        $timeTable->date = Carbon::today()->format('Y-m-d');
         $timeTable->save();
 
         TimeTable::paginate(10);
@@ -163,7 +137,7 @@ class TimeTableController extends Controller
         $entrance_2->save();
 
         return redirect()->route('timetables.index')
-            ->with('success', "Volta do Almoço Registrada");
+            ->with('success', "Volta do almoço registrada");
     }
 
     public function exit_2($id)

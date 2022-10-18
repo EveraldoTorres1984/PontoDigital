@@ -5,21 +5,21 @@
 @section('content_header')
 
     @include('flash-message')
-    <h1 class="mb-5">Relógio de ponto</h1>
-    <div class="row">
+    <h1 class="mb-5">Relógio de ponto</h1>    
+       
+    <div class="row align-middle">
         <form action="{{ route('timetables.store') }}" method="POST">
-            @csrf
-            <input type="date" name="date">
-            <button type="submit" class="ml-4 btn btn-sm btn-success">Registrar</button>
+            @csrf          
+            <button type="submit" class="ml-5 md-4 btn btn-sm btn-success">Registrar data atual</button>
         </form>
-        <div class="digital ml-5">--:--:--</div>
+        <div class="digital mb-3" style="margin-left: 300px; background-color: #BDB76B; padding: 10px; border-radius: 50px;">--:--:--</div>     
     </div>
 
 @endsection
 
 @section('content')
     
-    <div class="card">
+    <div class="card text-center">
         <div class="card-body">
             <table class="table table-hover">
                 <thead>
@@ -51,7 +51,7 @@
                             <td>
                                 @if (isset($timeTable->exit_1))
                                     {{ Carbon\Carbon::parse($timeTable->exit_1)->format('H:i') }}
-                                @else
+                                @elseif (isset($timeTable->entrance_1))
                                     <form action="{{ route('exit_1.update', ['id' => $timeTable->id]) }}" method="POST">
                                         @method('PUT')
                                         @csrf
@@ -64,7 +64,7 @@
                             <td>
                                 @if (isset($timeTable->entrance_2))
                                     {{ Carbon\Carbon::parse($timeTable->entrance_2)->format('H:i') }}
-                                @else
+                                @elseif (isset($timeTable->exit_1))
                                     <form action="{{ route('entrance_2.update', ['id' => $timeTable->id]) }}" method="POST">
                                         @method('PUT')
                                         @csrf
@@ -76,7 +76,7 @@
                             <td>
                                 @if (isset($timeTable->exit_2))
                                     {{ Carbon\Carbon::parse($timeTable->exit_2)->format('H:i') }}
-                                @else
+                                @elseif (isset($timeTable->entrance_2))
                                     <form action="{{ route('exit_2.update', ['id' => $timeTable->id]) }}" method="POST">
                                         @method('PUT')
                                         @csrf
@@ -114,8 +114,9 @@
 
         setInterval(updateClock, 1000);
         updateClock();
-    </script>
-    <script src="/js/app.js"></script>
+    </script>  
+       
+    
 @endsection
 
 
