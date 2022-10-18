@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
@@ -71,12 +72,12 @@ class UserController extends Controller
         }
 
         $user = new User;
-        $user->name = $data['name'];
+        $user->name = Str::ucfirst($data['name']);
         $user->email = $data['email'];
         $user->password = Hash::make($data['password']);
         $user->save();
 
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('success', 'Funcionário cadastrado com sucesso! ');
     }
 
     /**
@@ -194,6 +195,6 @@ class UserController extends Controller
             $user = User::find($id);
             $user->delete();
         }
-        return redirect()->route('users.index');
+        return redirect()->route('users.index')->with('info', 'Funcionário excluído com sucesso!');;
     }
 }

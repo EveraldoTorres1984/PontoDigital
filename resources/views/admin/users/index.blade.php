@@ -3,6 +3,7 @@
 @section('title', 'Usuários')
 
 @section('content_header')
+@include('flash-message')
     <h1>Quadro de funcionários
         <a href="{{ route('users.create') }}" class=" ml-3 btn btn-sm btn-success">Novo Funcionário</a>
     </h1>
