@@ -51,7 +51,7 @@ class LoginController extends Controller
     {
         $data = $request->only([
             'email',
-            'password'            
+            'password'
         ]);
         $validator = $this->validator($data);
 

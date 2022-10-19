@@ -66,7 +66,7 @@
                                     {{ Carbon\Carbon::parse($timeTable->entrance_2)->format('H:i') }}
                                 @elseif (isset($timeTable->exit_1))
                                     <form action="{{ route('entrance_2.update', ['id' => $timeTable->id]) }}" method="POST">
-                                        @method('PUT')
+                                        {{$timeTable->exit_2}} @method('PUT')
                                         @csrf
                                         <input type="hidden" name="id" value="{{ $timeTable->id }}">
                                         <button type="submit" class="ml-2 btn btn-sm btn-primary">Entrada tarde</button>
@@ -92,6 +92,8 @@
         </div>
     </div>
 
+    {{ $timeTables->links('pagination::bootstrap-4') }}
+    @endsection
 
 
 @section('js')
@@ -120,5 +122,5 @@
 @endsection
 
 
-{{ $timeTables->links('pagination::bootstrap-4') }}
-@endsection
+
+

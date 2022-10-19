@@ -52,16 +52,12 @@ class TimeTableController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        $loggedId = Auth::id();
-
+        
         $date = Carbon::now();
         $date->toDateTimeString();
-        $timeTable = new TimeTable();
-        $data = $request->only([
-            'date'
-        ]);
+        $timeTable = new TimeTable();        
 
         $checkDate = TimeTable::select('date')
             ->where('date', Carbon::today()->format('Y-m-d'))->where('user_id', Auth::id())
@@ -90,6 +86,11 @@ class TimeTableController extends Controller
      */
     public function show($id)
     {
+        $timeTables = TimeTable::get();
+
+        return view('admin.users.home', [
+            'timeTables' => $timeTables,
+        ]);
     }
 
     /**
