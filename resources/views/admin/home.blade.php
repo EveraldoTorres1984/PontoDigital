@@ -3,7 +3,8 @@
 @section('title', 'Painel')
 
 @section('content_header')
-    <h1>Painel de controle</h1>
+    <h1>
+        Painel de controle</h1>
 @endsection
 
 @section('content')
@@ -39,36 +40,43 @@
                             </tr>
                         </thead>
                         <tbody>
-                           @foreach ($timeTables as $timeTable)
-                               <tr>
-                                <td>{{$timeTable->user_id}}</td>
-                                <td>{{$timeTable->date->format('d/m/Y')}}</td>
-                                <td>@if (isset($timeTable->entrance_1))
-                                    {{ Carbon\Carbon::parse($timeTable->entrance_1)->format('H:i') }}
-                                    @else
-                                    <a href="{{route('timetables.index')}}"><i class="fas fa-exclamation-triangle"></i></a>
-                                @endif</td>
-                                <td>@if (isset($timeTable->exit_1))
-                                    {{ Carbon\Carbon::parse($timeTable->exit_1)->format('H:i') }}
-                                    @else
-                                    <a href="{{route('timetables.index')}}"><i class="fas fa-exclamation-triangle"></i></a>
-                                @endif</td>
-                                <td>@if (isset($timeTable->exit_1))
-                                    {{ Carbon\Carbon::parse($timeTable->exit_1)->format('H:i') }}
-                                    @else
-                                    <a href="{{route('timetables.index')}}"><i class="fas fa-exclamation-triangle"></i></a>
-                                @endif</td>
-                                <td>@if (isset($timeTable->exit_2))
-                                    {{ Carbon\Carbon::parse($timeTable->exit_2)->format('H:i') }}
-                                    @else
-                                    <a href="{{route('timetables.index')}}"><i class="fas fa-exclamation-triangle"></i></a>
-                                @endif</td>
-                               </tr>
-                           @endforeach
+                            @foreach ($timeTables as $timeTable)
+                                <tr>
+                                    <td>{{ $timeTable->user_id }}</td>
+                                    <td>{{ $timeTable->date->format('d/m/Y') }}</td>
+                                    <td>
+                                        @if (isset($timeTable->entrance_1))
+                                            {{ Carbon\Carbon::parse($timeTable->entrance_1)->format('H:i') }}
+                                        @else
+                                            <a href="{{ route('timetables.index') }}"><i class="fas fa-exclamation-triangle"></i></a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (isset($timeTable->exit_1))
+                                            {{ Carbon\Carbon::parse($timeTable->exit_1)->format('H:i') }}
+                                        @else
+                                            <a href="{{ route('timetables.index') }}"><i class="fas fa-exclamation-triangle"></i></a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (isset($timeTable->exit_1))
+                                            {{ Carbon\Carbon::parse($timeTable->exit_1)->format('H:i') }}
+                                        @else
+                                            <a href="{{ route('timetables.index') }}"><i class="fas fa-exclamation-triangle"></i></a>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if (isset($timeTable->exit_2))
+                                            {{ Carbon\Carbon::parse($timeTable->exit_2)->format('H:i') }}
+                                        @else
+                                            <a href="{{ route('timetables.index') }}"><i class="fas fa-exclamation-triangle"></i></a>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>        
-    @endsection  
-   
+        </div>
+@endsection

@@ -1,81 +1,28 @@
-<!doctype html>
-<html class="no-js" lang="zxx">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>@yield('title')</title>
-    <meta name="description" content="@yield('description')">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- <link rel="manifest" href="site.webmanifest"> -->
-    <!-- Place favicon.ico in the root directory -->
-
-    <!-- CSS here -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/font-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/nice-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/flaticon.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/gijgo.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/animate.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slick.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/slicknav.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-</head>
-<!-- header-start -->
-<header>
-    <div class="header-area ">
-        <div id="sticky-header" class="main-header-area">
-            <div class="container-fluid">
-                <div class="row align-items-center">
-                    <div class="col-xl-3 col-lg-2">
-                        <div class="logo">
-                            <a href="/">
-                                <img src="{{ asset('assets/img/logo.png') }}">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-</header>
-<!-- header-end -->
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Boas-vindas</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/access_time.png" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
 
 <body>
+    
     @yield('content')
 
-
-    <!-- JS here -->
-    <script src="{{ asset('/assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/vendor/jquery-1.12.4.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/popper.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/isotope.pkgd.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/ajax-form.js') }}"></script>
-    <script src="{{ asset('/assets/js/waypoints.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.counterup.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/imagesloaded.pkgd.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/scrollIt.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.scrollUp.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/wow.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/nice-select.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.slicknav.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.magnific-popup.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/plugins.js') }}"></script>
-    <script src="{{ asset('/assets/js/gijgo.min.js') }}"></script>
-
-    <!--contact js-->
-    <script src="{{ asset('/assets/js/contact.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.ajaxchimp.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.form.js') }}"></script>
-    <script src="{{ asset('/assets/js/jquery.validate.min.js') }}"></script>
-    <script src="{{ asset('/assets/js/mail-script.js') }}"></script>
-
-    <script src="{{ asset('/assets/js/main.js') }}"></script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::get('/', [Site\HomeController::class, 'index']);
+Route::get('/', [Site\HomeController::class, 'index'])->name('front');
 
 Route::prefix('painel')->group(function () {
     Route::get('/', [Admin\HomeController::class, 'index'])->name('admin');
